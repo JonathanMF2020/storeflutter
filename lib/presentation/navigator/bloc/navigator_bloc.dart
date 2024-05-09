@@ -10,6 +10,9 @@ class NavigatorBloc extends Bloc<NavigatorEvent, NavigatorState> {
     on<GoHome>((event, emit) {
       emit(StateHome());
     });
+    on<GoMiCarrito>((event, emit) {
+      emit(StateMiCarrito());
+    });
     on<GoDetail>((event, emit) {
       emit(StateDetail(event.producto));
     });

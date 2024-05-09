@@ -29,6 +29,8 @@ class SalvarCarrito {
     var precioTotal = 0.0;
     carrito.cantidad = 0;
     for (var element in carrito.productosCarrito!) {
+      element.suma = 0;
+      element.suma = element.suma!+(element.cantidad*element.producto!.price);
       precioTotal += element.producto!.price;
       carrito.cantidad = (carrito.cantidad!+element.cantidad);
     }

@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
@@ -6,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:storeapi/data/carrito_repository_impl.dart';
 import 'package:storeapi/data/model/carrito.dart';
 import 'package:storeapi/data/model/producto.dart';
-import 'package:storeapi/data/model/productos_carrito.dart';
 import 'package:storeapi/data/source/local/storage_carrito.dart';
 import 'package:storeapi/domain/usecase/carrito/obtener_carrito.dart';
 import 'package:storeapi/domain/usecase/carrito/salvar_carrito.dart';

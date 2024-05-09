@@ -33,6 +33,10 @@ class _BottomBarCustomState extends State<BottomBarCustom> {
               }else {
                 bloc.add(n.GoHome());
               }
+            break;
+            case 1:
+              bloc.add(n.GoMiCarrito());
+            break;
 
           }
         },

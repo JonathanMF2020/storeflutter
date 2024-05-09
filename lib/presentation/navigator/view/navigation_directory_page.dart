@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:storeapi/presentation/navigator/bloc/navigator_bloc.dart' as b;
+import 'package:storeapi/presentation/navigator/view/carrito/bloc/carrito_bloc.dart';
+import 'package:storeapi/presentation/navigator/view/carrito/view/carrito_page.dart';
 import 'package:storeapi/presentation/navigator/view/detail/bloc/detail_bloc.dart';
 import 'package:storeapi/presentation/navigator/view/detail/view/detail_page.dart';
 import 'package:storeapi/presentation/navigator/view/home/bloc/home_bloc.dart';
@@ -36,6 +38,13 @@ class _NavigationDirectoryPageState extends State<NavigationDirectoryPage> {
                 child: DetailPage(producto: state.producto),
               )
           ));
+        }
+        if(state is b.StateMiCarrito){
+          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+              builder: (context) =>  BlocProvider(
+                  create: (context) => CarritoBloc()
+                    ..add(CarritoObtenerEvent()),
+                  child: CarritoPage())),ModalRoute.withName('/'));
         }
         if (state is b.StateAjustes) {
           //Navigator.of(context).pushNamed('/settings');
