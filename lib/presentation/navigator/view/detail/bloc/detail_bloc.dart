@@ -35,33 +35,7 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
       _useCase = ObtenerCarrito(repository: repository);
       _useCase2 = SalvarCarrito(repository: repository);
       var carrito = await _useCase.call();
-      if(carrito.productosCarrito!.isNotEmpty)
-      {
-        print("Entro 1");
-        var producto = carrito.productosCarrito!.firstWhere((element) => element.producto!.id == event.producto.id, orElse: () => ProductosCarrito(event.cantidad,event.producto));
-        if(producto == null){
-          print("Entro 2");
-          carrito.productosCarrito!.add(producto);
-        }else{
-          print("Entro 3");
-          carrito.productosCarrito!.remove(producto);
-          producto.cantidad = event.cantidad;
-          carrito.productosCarrito!.add(producto);
-        }
-
-      }else{
-        var productoCarrito = ProductosCarrito(event.cantidad,event.producto);
-        carrito.productosCarrito!.add(productoCarrito);
-      }
-      var precioTotal = 0.0;
-      carrito.cantidad = 0;
-      for (var element in carrito.productosCarrito!) {
-        precioTotal += element.producto!.price;
-        carrito.cantidad = (carrito.cantidad!+element.cantidad);
-      }
-      carrito.total = precioTotal;
-      carrito.subtotal = precioTotal;
-      await _useCase2.call(carrito);
+      await _useCase2.call(carrito, event.cantidad,event.producto);
       emit(DetailObtenerCarritoSuccess(carrito: carrito));
     });
   }
