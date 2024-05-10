@@ -8,6 +8,8 @@ class Carrito {
   double? total;
   double? subtotal;
   int? cantidad;
+  double? envio;
+  double? iva;
   List<ProductosCarrito>? productosCarrito;
 
   Carrito crearModelo(){
@@ -15,6 +17,8 @@ class Carrito {
     carrito.cantidad = 0;
     carrito.subtotal = 0.0;
     carrito.total = 0.0;
+    carrito.envio = 0.0;
+    carrito.iva = 0.0;
     carrito.productosCarrito = null;
     return carrito;
   }
@@ -25,6 +29,8 @@ class Carrito {
       : cantidad = json['cantidad'],
       total = double.parse(json['total'].toString()),
       subtotal = double.parse(json['subtotal'].toString()),
+      envio = double.parse(json['envio'].toString()),
+      iva = double.parse(json['iva'].toString()),
       productosCarrito = _createProductosCarrito(json['productosCarrito'] as List<dynamic>);
 
   static List<ProductosCarrito> _createProductosCarrito(List<dynamic> jsonData) {
@@ -38,6 +44,8 @@ class Carrito {
     'cantidad': cantidad,
     'total': total,
     'subtotal': subtotal,
+    'envio': envio,
+    'iva': envio,
     'productosCarrito': productosCarrito == null
         ? null
         : List<dynamic>.from(productosCarrito!.map((ProductosCarrito x) => jsonEncode(x.toJson()))),

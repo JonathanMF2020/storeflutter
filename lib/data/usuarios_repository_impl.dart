@@ -13,9 +13,9 @@ class UsuarioRepositoryImpl implements UsuarioRepository {
   })  : _api = api, _storageAuth = storageAuth;
 
   @override
-  Future<Usuario> login(String usuariostr,String password) async {
-    Usuario usuario = await _api.login(usuariostr,password);
-    _storageAuth.setToken(usuario.token!);
+  Future<Usuario?> login(String usuariostr,String password) async {
+    Usuario? usuario = await _api.login(usuariostr,password);
+    _storageAuth.setToken(usuario!.token);
     return usuario;
   }
 

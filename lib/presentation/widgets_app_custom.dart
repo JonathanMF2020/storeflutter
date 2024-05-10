@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:storeapi/data/model/productos_carrito.dart';
 import 'package:storeapi/presentation/color.dart';
 import 'package:storeapi/presentation/navigator/bloc/navigator_bloc.dart' as n;
 import 'package:storeapi/presentation/navigator/view/detail/bloc/detail_bloc.dart';
@@ -35,6 +37,7 @@ class WidgetsAppCustom {
     );
   }
 
+
   static PreferredSize AppBarCustom(
       {required bool atras, required context, required String title}) {
     return PreferredSize(
@@ -44,10 +47,13 @@ class WidgetsAppCustom {
           builder: (context, state) {
             return IconButton(
               icon: const Icon(Icons.arrow_back, color: Colors.white),
-              onPressed: () =>
+              onPressed: ()
               {
                 if(state is n.StateDetail){
-                  BlocProvider.of<n.NavigatorBloc>(context).add(n.GoHome())
+                  BlocProvider.of<n.NavigatorBloc>(context).add(n.GoHome());
+                }
+                if(state is n.StateCheckout){
+                  Navigator.pop(context);
                 }
               },
             );

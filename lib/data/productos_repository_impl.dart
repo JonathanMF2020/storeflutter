@@ -10,12 +10,12 @@ class ProductoRepositoryImpl implements ProductosRepository {
   })  : _api = api;
 
   @override
-  Future<List<Producto>> obtenerProductos()async {
+  Future<List<Producto>?> obtenerProductos()async {
     return await _api.obtenerProductos();
   }
 
   @override
-  Future<List<Producto>> obtenerProductosLimit(int limite)async {
+  Future<List<Producto>?> obtenerProductosLimit(int limite)async {
     return await _api.obtenerProductosLimit(limite);
   }
 }

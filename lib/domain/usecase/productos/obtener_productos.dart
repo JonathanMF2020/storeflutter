@@ -8,7 +8,7 @@ class ObtenerProductos {
 
   final ProductosRepository _repository;
 
-  Future<List<Producto>> call() async {
+  Future<List<Producto>?> call() async {
     return await _repository.obtenerProductos();
   }
 }

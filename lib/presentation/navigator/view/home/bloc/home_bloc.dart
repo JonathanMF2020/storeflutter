@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:storeapi/data/model/producto.dart';
 import 'package:storeapi/data/productos_repository_impl.dart';
@@ -18,10 +19,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         var repository = ProductoRepositoryImpl(api: api);
         _obtenerProductos = ObtenerProductos(repository: repository);
         var productos = await _obtenerProductos.call();
-        emit(StateHomeSuccess(productos: productos));
-      }catch (e,stack){
-        print(e);
-        print(stack);
+        emit(StateHomeSuccess(productos: productos!));
+      }on DioException catch(e){
+        emit(StateHomeError(error: e.toString()));
+      }
+      catch (e,stack){
         emit(StateHomeError(error: e.toString()));
       }
 

@@ -34,9 +34,10 @@ class SalvarCarrito {
       precioTotal += element.producto!.price;
       carrito.cantidad = (carrito.cantidad!+element.cantidad);
     }
-    carrito.total = precioTotal;
     carrito.subtotal = precioTotal;
-    print("Guardando Use case");
+    double cantidadiva = precioTotal*0.16;
+    carrito.envio = 15.00;
+    carrito.total = (precioTotal+cantidadiva)+carrito.envio!;
     return _repository.salvarCarrito(carrito);
   }
 }

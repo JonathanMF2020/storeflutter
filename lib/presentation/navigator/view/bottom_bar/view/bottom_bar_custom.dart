@@ -41,7 +41,7 @@ class _BottomBarCustomState extends State<BottomBarCustom> {
           }
         },
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          const BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Stack(children: [
 
             const Icon(Icons.shopping_bag),
@@ -54,12 +54,12 @@ class _BottomBarCustomState extends State<BottomBarCustom> {
                     right: 0,
                     child: Container(
                         alignment: Alignment.center,
-                        padding: EdgeInsets.all(2),
+                        padding: const EdgeInsets.all(2),
                         decoration: const BoxDecoration(
                           color: Colors.red,
                           shape: BoxShape.circle,
                         ),
-                        child: Text(state.carrito.cantidad.toString(), style: TextStyle(fontSize: 10,color: Colors.white),)),
+                        child: Text(state.carrito.cantidad.toString(), style: const TextStyle(fontSize: 10,color: Colors.white),)),
                   );
                 }else{
                   return Positioned(
@@ -68,19 +68,19 @@ class _BottomBarCustomState extends State<BottomBarCustom> {
                     right: 0,
                     child: Container(
                         alignment: Alignment.center,
-                        padding: EdgeInsets.all(2),
+                        padding: const EdgeInsets.all(2),
                         decoration: const BoxDecoration(
                           color: Colors.red,
                           shape: BoxShape.circle,
                         ),
-                        child: Text("0", style: TextStyle(fontSize: 10,color: Colors.white),)),
+                        child: const Text("0", style: TextStyle(fontSize: 10,color: Colors.white),)),
                   );
                 }
 
               },
             ),
           ],), label: 'Mi carrito'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Ajustes'),
+          const BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Ajustes'),
         ],
       );
   },

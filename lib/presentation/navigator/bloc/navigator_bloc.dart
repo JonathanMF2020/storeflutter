@@ -1,5 +1,6 @@
 
 import 'package:bloc/bloc.dart';
+import 'package:storeapi/data/model/carrito.dart';
 import 'package:storeapi/data/model/producto.dart';
 
 part 'navigator_event.dart';
@@ -12,6 +13,12 @@ class NavigatorBloc extends Bloc<NavigatorEvent, NavigatorState> {
     });
     on<GoMiCarrito>((event, emit) {
       emit(StateMiCarrito());
+    });
+    on<GoCheckout>((event, emit) {
+      emit(StateCheckout(carrito: event.carrito));
+    });
+    on<GoError>((event, emit) {
+      emit(StateError(error: event.error));
     });
     on<GoDetail>((event, emit) {
       emit(StateDetail(event.producto));

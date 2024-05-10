@@ -8,5 +8,15 @@ class StateDetail extends NavigatorState {
 
   StateDetail(this.producto);
 }
+class StateCheckout extends NavigatorState {
+  final Carrito carrito;
+
+  StateCheckout({required this.carrito});
+}
+class StateError extends NavigatorState {
+  final String error;
+
+  StateError({required this.error});
+}
 class StateMiCarrito extends NavigatorState{}
 class StateAjustes extends NavigatorState{}

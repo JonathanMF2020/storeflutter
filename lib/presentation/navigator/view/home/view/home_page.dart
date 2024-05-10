@@ -21,9 +21,7 @@ class _HomePageState extends State<HomePage> {
     return BlocListener<HomeBloc, HomeState>(
       listener: (context, state) {
         if (state is StateHomeError) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(state.error),
-          ));
+          BlocProvider.of<NavigatorBloc>(context).add(GoError(error: state.error));
         }
       },
       child: Scaffold(
@@ -60,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                                     height: 200,
                                     progressIndicatorBuilder: (context, url, downloadProgress) =>
                                         Container(height: 200,color: Colors.grey.shade300,),
-                                    errorWidget: (context, url, error) => Icon(Icons.error),
+                                    errorWidget: (context, url, error) => const Icon(Icons.error),
                                   ),
                                ),
                                 Container(
@@ -69,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                                     overflow: TextOverflow.ellipsis
                                   ),
                                 ),
-                                Text("\$${e.price.toStringAsFixed(2)}",style: TextStyle(color: AppColors.primerColor,fontWeight: FontWeight.bold),)
+                                Text("\$${e.price.toStringAsFixed(2)}",style: const TextStyle(color: AppColors.primerColor,fontWeight: FontWeight.bold),)
                               ],
                             ),
                           ),
