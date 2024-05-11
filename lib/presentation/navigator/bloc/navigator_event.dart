@@ -11,6 +11,11 @@ class GoCheckout extends NavigatorEvent{
   GoCheckout({required this.carrito});
 }
 
+class GoStepFinal extends NavigatorEvent{
+  final Carrito carrito;
+  GoStepFinal({required this.carrito});
+}
+
 class GoError extends NavigatorEvent{
   final String error;
   GoError({required this.error});

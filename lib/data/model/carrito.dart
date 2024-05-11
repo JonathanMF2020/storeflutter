@@ -29,8 +29,8 @@ class Carrito {
       : cantidad = json['cantidad'],
       total = double.parse(json['total'].toString()),
       subtotal = double.parse(json['subtotal'].toString()),
-      envio = double.parse(json['envio'].toString()),
-      iva = double.parse(json['iva'].toString()),
+      envio = json['envio'] == null ? 0 :double.parse(json['envio'].toString() ),
+      iva = json['iva'] == null ? 0 : double.parse(json['iva'].toString()),
       productosCarrito = _createProductosCarrito(json['productosCarrito'] as List<dynamic>);
 
   static List<ProductosCarrito> _createProductosCarrito(List<dynamic> jsonData) {
@@ -44,8 +44,8 @@ class Carrito {
     'cantidad': cantidad,
     'total': total,
     'subtotal': subtotal,
-    'envio': envio,
-    'iva': envio,
+    'envio': envio == null ? 0 : envio,
+    'iva': iva == null ? 0 : iva,
     'productosCarrito': productosCarrito == null
         ? null
         : List<dynamic>.from(productosCarrito!.map((ProductosCarrito x) => jsonEncode(x.toJson()))),

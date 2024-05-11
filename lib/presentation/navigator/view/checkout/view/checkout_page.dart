@@ -1,8 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_stripe/flutter_stripe.dart' as stripe;
 import 'package:storeapi/data/model/carrito.dart';
 import 'package:storeapi/data/model/productos_carrito.dart';
+import 'package:storeapi/presentation/color.dart';
+import 'package:storeapi/presentation/navigator/bloc/navigator_bloc.dart';
 import 'package:storeapi/presentation/navigator/view/bottom_bar/view/bottom_bar_custom.dart';
+import 'package:storeapi/presentation/widgets/slider_button.dart';
 import 'package:storeapi/presentation/widgets_app_custom.dart';
 
 class CheckoutPage extends StatefulWidget {
@@ -13,6 +18,8 @@ class CheckoutPage extends StatefulWidget {
 }
 
 class _CheckoutPageState extends State<CheckoutPage> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,9 +77,28 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     const Text("Total",style: TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 15),),
                     Text("\$${widget.carrito.total} USD",style: const TextStyle(
-                        fontWeight: FontWeight.w300, fontSize: 15),),
+                        fontWeight: FontWeight.bold, fontSize: 15),),
                   ],
                 ),
+                Container(
+                  margin: EdgeInsets.only(top: 30),
+                  child: SliderButton(
+
+                    text: 'Desliza para pagar',
+                    onSlided: () async {
+                     // BlocProvider.of<CheckoutBloc>(context).add(PagarEvent());
+                      //displayPaymentSheet();
+                      BlocProvider.of<NavigatorBloc>(context).add(GoStepFinal(carrito: widget.carrito));
+                      /*final paymentMethod = await stripe.Stripe.instance.createPaymentMethod(
+                        params: const stripe.PaymentMethodParams.card(
+                          paymentMethodData: stripe.PaymentMethodData(),
+                        ),
+                      );*/
+
+                    },
+                  ),
+                ),
+
               ],
             ),
           ),
@@ -80,6 +106,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
       ),
     );
   }
+
+
 
   Widget TarjetasProductos(ProductosCarrito pc) {
     var producto = pc.producto!;
@@ -135,4 +163,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
       ),
     );
   }
+
+
 }

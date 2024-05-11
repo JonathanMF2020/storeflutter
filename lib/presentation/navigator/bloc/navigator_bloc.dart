@@ -17,6 +17,9 @@ class NavigatorBloc extends Bloc<NavigatorEvent, NavigatorState> {
     on<GoCheckout>((event, emit) {
       emit(StateCheckout(carrito: event.carrito));
     });
+    on<GoStepFinal>((event, emit) {
+      emit(StateStepFinal(carrito: event.carrito));
+    });
     on<GoError>((event, emit) {
       emit(StateError(error: event.error));
     });

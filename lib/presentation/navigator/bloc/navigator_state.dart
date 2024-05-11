@@ -13,6 +13,11 @@ class StateCheckout extends NavigatorState {
 
   StateCheckout({required this.carrito});
 }
+class StateStepFinal extends NavigatorState {
+  final Carrito carrito;
+
+  StateStepFinal({required this.carrito});
+}
 class StateError extends NavigatorState {
   final String error;
 
