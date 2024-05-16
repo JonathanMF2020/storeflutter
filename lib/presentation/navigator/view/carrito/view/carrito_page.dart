@@ -121,7 +121,7 @@ class _CarritoPageState extends State<CarritoPage>
             height: 100,
             width: MediaQuery.of(context).size.width,
             color: Colors.grey.shade200,
-            child: Row(
+            child: carrito.productosCarrito!.isNotEmpty ? Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -168,6 +168,14 @@ class _CarritoPageState extends State<CarritoPage>
                   ),
                 )
               ],
+            ) : Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text("No tienes aun productos agregados al carrito"),
+                ],
+              ),
             ),
           ),
         )

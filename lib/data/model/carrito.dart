@@ -31,7 +31,7 @@ class Carrito {
       subtotal = double.parse(json['subtotal'].toString()),
       envio = json['envio'] == null ? 0 :double.parse(json['envio'].toString() ),
       iva = json['iva'] == null ? 0 : double.parse(json['iva'].toString()),
-      productosCarrito = _createProductosCarrito(json['productosCarrito'] as List<dynamic>);
+      productosCarrito = json['productosCarrito'] == null ? [] : _createProductosCarrito(json['productosCarrito'] as List<dynamic>);
 
   static List<ProductosCarrito> _createProductosCarrito(List<dynamic> jsonData) {
     List<ProductosCarrito> lista = jsonData

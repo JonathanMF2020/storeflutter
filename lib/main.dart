@@ -9,6 +9,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: "assets/.env");
   Stripe.publishableKey = dotenv.env['STRIPE_PUBLIC']!;
+  Stripe.
   Bloc.observer = AppBlocObserver();
   runApp(const AppRoot());
 }

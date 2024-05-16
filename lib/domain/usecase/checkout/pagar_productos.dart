@@ -10,11 +10,11 @@ class PagarProductos {
 
   final StripeRepository  _repository;
 
-  Future<void> call({required CardDetails detail, required double total}) async {
+  Future<bool> call({required CardDetails detail, required double total}) async {
     return stripeMakePayment(detail,total);
   }
 
-  Future<void> stripeMakePayment(CardDetails detail,double total) async {
+  Future<bool> stripeMakePayment(CardDetails detail,double total) async {
     try {
       CardTokenParams cardParams = CardTokenParams(type: TokenType.Card, name:"Card${detail.number}",);
       Stripe.instance.dangerouslyUpdateCardDetails(detail);
@@ -40,12 +40,15 @@ class PagarProductos {
               merchantDisplayName: 'Ikay'));
 
       if(paymentIntent["status"] ==  "succeeded"){
-        // TODO: Terminar esto
+        return true;
+      }else{
+        return false;
       }
 
     } catch (e,stack) {
       print(stack);
       print(e.toString());
+      return false;
       // TODO: Manejo de errores en vista
     }
   }

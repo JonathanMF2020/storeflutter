@@ -7,6 +7,7 @@ import 'package:storeapi/data/model/carrito.dart';
 abstract class StorageCarrito{
   Future<bool> setCarrito(Carrito carrito);
   Carrito getCarrito();
+  Future<bool> eliminarCarrito();
 }
 
 class StorageCarritoImpl implements StorageCarrito{
@@ -44,6 +45,11 @@ class StorageCarritoImpl implements StorageCarrito{
   @override
   Future<bool> setCarrito(Carrito carrito) {
     return _sharedPref.setString("CARRITO", jsonEncode(carrito.toJson()));
+  }
+
+  @override
+  Future<bool> eliminarCarrito() {
+    return _sharedPref.remove("CARRITO");
   }
 
 }

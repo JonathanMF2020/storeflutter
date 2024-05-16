@@ -60,7 +60,7 @@ class _StepFinalPageState extends State<StepFinalPage> {
                         expirationYear: controller.details.expiryYear,
                         cvc: controller.details.cvc,
                     );
-                    BlocProvider.of<StepFinalBloc>(context).add(PagarProductosEvent(total: widget.carrito.total!,detail: cardDetails));
+                    BlocProvider.of<StepFinalBloc>(context).add(PagarProductosEvent(total: widget.carrito.total!,detail: cardDetails,carrito: widget.carrito));
 
                   },
                   child: Row(
