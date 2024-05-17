@@ -8,8 +8,9 @@ import 'package:storeapi/presentation/app_root.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: "assets/.env");
+  print(dotenv.env['STRIPE_PUBLIC']!);
   Stripe.publishableKey = dotenv.env['STRIPE_PUBLIC']!;
-  Stripe.
+  Stripe.instance.applySettings();
   Bloc.observer = AppBlocObserver();
   runApp(const AppRoot());
 }

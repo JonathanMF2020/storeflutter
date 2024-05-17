@@ -29,5 +29,8 @@ class NavigatorBloc extends Bloc<NavigatorEvent, NavigatorState> {
     on<GoAjustes>((event, emit) {
       emit(StateAjustes());
     });
+    on<GoReview>((event, emit) {
+      emit(StateReview());
+    });
   }
 }

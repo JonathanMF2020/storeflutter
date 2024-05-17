@@ -3,7 +3,11 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:meta/meta.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:storeapi/data/carrito_repository_impl.dart';
 import 'package:storeapi/data/model/carrito.dart';
+import 'package:storeapi/data/source/local/storage_carrito.dart';
+import 'package:storeapi/data/source/network/api_carrito.dart';
 import 'package:storeapi/data/source/network/api_stripe.dart';
 import 'package:storeapi/data/stripe_repository_impl.dart';
 import 'package:storeapi/domain/usecase/checkout/pagar_productos.dart';
@@ -22,9 +26,15 @@ class StepFinalBloc extends Bloc<StepFinalEvent, StepFinalState> {
       _pagarProductos = PagarProductos(repository: repository);
       bool respuesta = await _pagarProductos.call(detail: event.detail, total: event.total);
       if(respuesta){
-        eliminarCarrito(event.carrito);
+        var apiCarrito = ApiCarritoImpl();
+        SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+        var storageCarrito = StorageCarritoImpl(sharedPreferences: sharedPreferences);
+        var repositoryCarrito = CarritoRepositoryImpl(storageCarrito: storageCarrito, apiCarrito: apiCarrito);
+        eliminarCarrito = EliminarCarrito(repository: repositoryCarrito);
+        eliminarCarrito.call(event.carrito);
+        emit(StepFinalSuccess());
       }
-      emit(StepFinalSuccess());
+      
     });
   }
 }

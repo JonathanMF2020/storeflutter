@@ -9,6 +9,7 @@ import 'package:storeapi/presentation/navigator/view/detail/view/detail_page.dar
 import 'package:storeapi/presentation/navigator/view/error/view/error_page.dart';
 import 'package:storeapi/presentation/navigator/view/home/bloc/home_bloc.dart';
 import 'package:storeapi/presentation/navigator/view/home/view/home_page.dart';
+import 'package:storeapi/presentation/navigator/view/review/view/review_page.dart';
 import 'package:storeapi/presentation/navigator/view/step_final/bloc/step_final_bloc.dart';
 import 'package:storeapi/presentation/navigator/view/step_final/view/step_final_page.dart';
 
@@ -74,6 +75,12 @@ class _NavigationDirectoryPageState extends State<NavigationDirectoryPage> {
         }
         if (state is b.StateAjustes) {
           //Navigator.of(context).pushNamed('/settings');
+        }
+        if (state is b.StateReview) {
+           Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (context) => ReviewPage()),
+              ModalRoute.withName('/'));
         }
       },
       child: Container(),

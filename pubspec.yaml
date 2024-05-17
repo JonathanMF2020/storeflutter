@@ -32,4 +32,5 @@ flutter:
   assets:
     - assets/images/logo.png
     - assets/images/perrito.png
+    - assets/images/perrito-feliz.png
     - assets/.env

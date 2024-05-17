@@ -22,4 +22,5 @@ class GoError extends NavigatorEvent{
 }
 
 class GoMiCarrito extends NavigatorEvent{}
+class GoReview extends NavigatorEvent{}
 class GoAjustes extends NavigatorEvent{}

@@ -24,4 +24,5 @@ class StateError extends NavigatorState {
   StateError({required this.error});
 }
 class StateMiCarrito extends NavigatorState{}
+class StateReview extends NavigatorState{}
 class StateAjustes extends NavigatorState{}
